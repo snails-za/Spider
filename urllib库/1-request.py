@@ -24,6 +24,6 @@ img_url = r'http://pics.sc.chinaz.com/files/pic/pic9/201901/zzpic16198.jpg'
 
 # with open("img1.jpg", "wb") as f:
    # f.write(response.read())
-urllib.request.urlretrieve(img_url, "img2.jpg")
+urllib.request.urlretrieve(img_url, "img3.jpg")
 
 
