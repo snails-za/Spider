@@ -2,8 +2,11 @@ import urllib.request
 import urllib.parse
 import re
 import os
+import time
+
 
 class SpiderImg(object):
+    count = 1
 
     def __init__(self, url, get_url):
         """初始化"""
@@ -35,11 +38,11 @@ class SpiderImg(object):
             os.mkdir("image")
         if not os.path.exists("./image/%s/" % word):
             os.mkdir("./image/%s/" % word)
-        count = 1
 
         for img_item in img_links:
-            urllib.request.urlretrieve(url=img_item, filename=('./image/%s/%d.jpg' % (word, count)))
-            count += 1
+            urllib.request.urlretrieve(url=img_item, filename=('./image/%s/%d.jpg' % (word, self.count)))
+            time.sleep(1)
+            self.count += 1
 
 
 if __name__ == '__main__':
@@ -49,13 +52,10 @@ if __name__ == '__main__':
     rn : 一张有多少个图片
     """
     word = input("请输入您想查询的图片名称（例如：美女，动物等）：")
-    num = input("从第几张图片开始（一页60张）：")
+    page = input("下载几页图片（一页60张）：")
+    # 创建对象，初始化数据
 
-    data = {'word': word,
-            "pn": num,
-            'rn': '60'}
 
-    get_url = r'"thumbURL":.*?"(.*?\.jpg)"'
 
     headers = {
         'Host': 'image.baidu.com',
@@ -68,19 +68,26 @@ if __name__ == '__main__':
         'Cookie': 'BDqhfp=%E5%8A%A8%E7%89%A9%26%26NaN-1undefined-1undefined%26%264630%26%267; BAIDUID=04AF0E6FCEB74A3E6CA2C32606EF8892:FG=1; BIDUPSID=D8CAC45F89186CC0232016FF853C7430; PSTM=1557136117; BDUSS=RISjJMQkdvREJSdWo0V2VvQlJ6MElVQmNHd3diWDFycE5zdXJ3NmNIT0E3MXhkSVFBQUFBJCQAAAAAAAAAAAEAAAC5XwWb17fRsDE2NTEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIBiNV2AYjVddH; indexPageSugList=%5B%22dongwu%22%2C%22meinv%22%2C%22%E5%8A%A8%E7%89%A9%22%2C%22%E9%A3%8E%E6%99%AF%22%2C%22%E6%96%97%E9%B1%BC%22%5D; H_PS_PSSID=1426_21082_29721_29567_29221_22159; BDORZ=FFFB88E999055A3F8A630C64834BD6D0; BDRCVFR[Hp1ap0hMjsC]=mk3SLVN4HKm; delPer=0; PSINO=1; BCLID=12201827791489652894; BDSFRCVID=F5LOJeC627Sm8SnwCqGkuuATumJVeXcTH6aIS-WX22TRn74wT44REG0P_M8g0KubTVMxogKKy2OTH9DF_2uxOjjg8UtVJeC6EG0Ptf8g0M5; H_BDCLCKID_SF=tJkOoK0afC83qPbv-P4_5bLSMMnXKK62aKDsKD51BhcqEIL4jpbVehtH5PbD0-ntbm6nLR6FQJ5iHUbSj4Qz0IuiWaKHLpjXJbnf-I-2Lq5nhMJ3Xj7JDMP0-ROpWRvy523iXCovQpPBshQ3DRoWXPIqbN7P-p5Z5mAqKl0MLPbtbb0xXj_0-nDSHHKDtj8t3e; BDRCVFR[dG2JNJb_ajR]=mk3SLVN4HKm; BDRCVFR[-pGxjrCMryR]=mk3SLVN4HKm; firstShowTip=1; userFrom=www.baidu.com; cleanHistoryStatus=0',
 
     }
-
-    # 创建对象，初始化数据
+    get_url = r'"thumbURL":.*?"(.*?\.jpg)"'
     insect = SpiderImg(url, get_url)
 
-    # 创建请求对象
-    request = insect.create_object(data, headers)
+    for num in range(int(page)):
+        data = {'word': word,
+                "pn": str(num * 60),
+                'rn': '60'}
 
-    # 发送请求并且打印结果
-    img_links = insect.send_request(request)
 
-    # 保存图片
-    insect.save_img(img_links)
-    
+
+        # 创建请求对象
+        request = insect.create_object(data, headers)
+
+        # 发送请求并且打印结果
+        img_links = insect.send_request(request)
+
+        # 保存图片
+        insect.save_img(img_links)
+
+
 
 
 
