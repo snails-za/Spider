@@ -13,7 +13,6 @@ soup = BeautifulSoup(open('../soup_text.html'), 'lxml')
 # print(soup.a["title"])
 # print(soup.a['target'])
 # print(soup.a.attrs)
-# print
 
 # 获取内容
 # print(soup.a.text)
