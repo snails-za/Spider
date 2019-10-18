@@ -22,7 +22,7 @@ class Classmate(object):
         else:
             raise StopIteration
 classmate = Classmate()
-print(classmate)
+print(isinstance(classmate, Iterator))
 
 classmate.add("老王")
 classmate.add("王二")

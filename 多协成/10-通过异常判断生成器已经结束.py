@@ -22,7 +22,7 @@ while True:
         ret = next(b)
         print(ret)
     except Exception as ret:
-        print(ret.value)
+        print(ret)
         break
 
 # for i in a:

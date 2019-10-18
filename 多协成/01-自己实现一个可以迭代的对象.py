@@ -1,6 +1,8 @@
 from collections import Iterable
 from collections import Iterator
 from time import sleep
+
+
 class Classmate(object):
     def __init__(self):
         self.names = list()
@@ -24,7 +26,7 @@ class ClassIterator(object):
 
 
 classmate = Classmate()
-
+print("判断classmate是否是可迭代对象：", isinstance(classmate, Iterable))
 
 classmate.add("老王")
 classmate.add("王二")
@@ -32,7 +34,7 @@ classmate.add("张三")
 
 print("判断classmate是否是可迭代对象：", isinstance(classmate, Iterable))
 classmate_iterator = iter(classmate)
-print("判断class_iterator是否是迭代器：", isinstance(classmate_iterator, Iterable))
+print("判断class_iterator是否是迭代器：", isinstance(classmate_iterator, Iterator))
 
 print(next(classmate_iterator))
 for name in classmate:
