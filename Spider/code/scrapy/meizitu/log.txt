@@ -1,0 +1,21 @@
+2019-11-02 19:16:52 [scrapy.core.scraper] ERROR: Spider error processing <GET https://i5.meizitu.net/thumbs/2019/10/196171_23a25_236.jpg> (referer: https://www.mzitu.com/xinggan/)
+Traceback (most recent call last):
+  File "e:\python3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "C:\Users\wangju\Desktop\Spider\code\scrapy\meizitu\meizitu\spiders\meizi.py", line 42, in downloader
+    image_name = os.path.basename(image_name)
+UnboundLocalError: local variable 'image_name' referenced before assignment
+2019-11-02 19:16:57 [scrapy.core.scraper] ERROR: Spider error processing <GET https://i5.meizitu.net/thumbs/2019/10/195991_21b06_236.jpg> (referer: https://www.mzitu.com/xinggan/)
+Traceback (most recent call last):
+  File "e:\python3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "C:\Users\wangju\Desktop\Spider\code\scrapy\meizitu\meizitu\spiders\meizi.py", line 42, in downloader
+    image_name = os.path.basename(image_name)
+UnboundLocalError: local variable 'image_name' referenced before assignment
+2019-11-02 19:17:00 [scrapy.core.scraper] ERROR: Spider error processing <GET https://i5.meizitu.net/thumbs/2019/10/196725_28a34_236.jpg> (referer: https://www.mzitu.com/xinggan/)
+Traceback (most recent call last):
+  File "e:\python3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "C:\Users\wangju\Desktop\Spider\code\scrapy\meizitu\meizitu\spiders\meizi.py", line 42, in downloader
+    image_name = os.path.basename(image_name)
+UnboundLocalError: local variable 'image_name' referenced before assignment
